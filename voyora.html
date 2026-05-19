@@ -1,0 +1,2420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOYORA – Plan Smart. Travel Easy.</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ===== RESET & ROOT ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #061225;
+  --blue: #1A6BF5;
+  --blue-mid: #2F82FF;
+  --blue-light: #5FA8FF;
+  --sky: #E4F0FF;
+  --sky2: #F0F7FF;
+  --accent: #FF6B35;
+  --accent2: #22D3A5;
+  --white: #FFFFFF;
+  --gray: #7A8AA0;
+  --gray2: #B0BCC9;
+  --dark: #0D1F35;
+  --card-bg: #FFFFFF;
+  --shadow: 0 8px 40px rgba(26,107,245,0.10);
+  --shadow-lg: 0 20px 60px rgba(6,18,37,0.15);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --font-head: 'Sora', sans-serif;
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--dark);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+img { max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--sky2); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 4px; }
+
+/* ===== UTILITY ===== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-pad { padding: 90px 0; }
+.section-pad-sm { padding: 60px 0; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--sky); color: var(--blue);
+  font-family: var(--font-head); font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 50px; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.section-title {
+  font-family: var(--font-head); font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800; color: var(--navy); line-height: 1.15; margin-top: 12px;
+}
+.section-sub {
+  font-size: 16px; color: var(--gray); margin-top: 12px; max-width: 560px;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue); color: white; font-family: var(--font-head);
+  font-weight: 600; font-size: 15px; padding: 14px 30px;
+  border-radius: 50px; border: none; cursor: pointer;
+  transition: all 0.3s ease; box-shadow: 0 6px 24px rgba(26,107,245,0.35);
+  white-space: nowrap;
+}
+.btn-primary:hover { background: #0D5CE0; transform: translateY(-2px); box-shadow: 0 10px 32px rgba(26,107,245,0.45); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--blue);
+  font-family: var(--font-head); font-weight: 600; font-size: 15px;
+  padding: 13px 28px; border-radius: 50px; border: 2px solid var(--blue);
+  cursor: pointer; transition: all 0.3s ease;
+}
+.btn-outline:hover { background: var(--blue); color: white; }
+.btn-accent {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: white; font-family: var(--font-head);
+  font-weight: 600; font-size: 15px; padding: 14px 28px;
+  border-radius: 50px; border: none; cursor: pointer;
+  transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(255,107,53,0.3);
+}
+.btn-accent:hover { background: #e05a28; transform: translateY(-2px); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.text-center { text-align: center; }
+.card {
+  background: var(--card-bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 28px; transition: all 0.3s ease;
+  border: 1.5px solid rgba(26,107,245,0.06);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 50px; font-size: 11px; font-weight: 700;
+}
+.badge-green { background: #DCFCE7; color: #16A34A; }
+.badge-orange { background: #FEF3C7; color: #D97706; }
+.badge-blue { background: #DBEAFE; color: #1D4ED8; }
+.badge-red { background: #FEE2E2; color: #DC2626; }
+
+/* animate on scroll */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-in { opacity: 0; transition: opacity 0.7s ease; }
+.fade-in.visible { opacity: 1; }
+
+/* ===== NAVBAR ===== */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 24px; height: 68px;
+  display: flex; align-items: center;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(6,18,37,0.08);
+  transition: all 0.3s;
+}
+#navbar.scrolled { box-shadow: 0 4px 30px rgba(6,18,37,0.14); }
+.nav-inner {
+  max-width: 1200px; width: 100%; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-head); font-weight: 800; font-size: 22px; color: var(--navy);
+}
+.logo-icon {
+  width: 38px; height: 38px; background: var(--blue);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 16px;
+}
+.logo span { color: var(--blue); }
+.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-links a {
+  font-family: var(--font-head); font-size: 14px; font-weight: 500; color: var(--gray);
+  padding: 8px 14px; border-radius: 8px; transition: all 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--blue); background: var(--sky); }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+.hamburger span { width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.3s; }
+.mobile-menu {
+  display: none; position: fixed; top: 68px; left: 0; right: 0;
+  background: white; padding: 20px; box-shadow: var(--shadow-lg);
+  flex-direction: column; gap: 4px; z-index: 999;
+}
+.mobile-menu a {
+  padding: 12px 16px; border-radius: 10px; font-family: var(--font-head);
+  font-weight: 500; color: var(--dark); transition: all 0.2s;
+}
+.mobile-menu a:hover { background: var(--sky); color: var(--blue); }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh; position: relative; overflow: hidden;
+  display: flex; align-items: center; padding-top: 68px;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(135deg, #061225 0%, #0A2347 40%, #0E3A6E 70%, #1A6BF5 100%);
+}
+.hero-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1800&q=80') center/cover no-repeat;
+  opacity: 0.18;
+}
+.hero-shapes {
+  position: absolute; inset: 0; overflow: hidden; z-index: 1;
+}
+.hero-shapes div {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,107,245,0.3) 0%, transparent 70%);
+}
+.hs1 { width: 600px; height: 600px; top: -200px; right: -100px; }
+.hs2 { width: 400px; height: 400px; bottom: -100px; left: 200px; animation: float 6s ease-in-out infinite; }
+.hs3 { width: 200px; height: 200px; top: 30%; left: 5%; background: radial-gradient(circle, rgba(34,211,165,0.25) 0%, transparent 70%); }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+.hero-content {
+  position: relative; z-index: 2; padding: 80px 0 60px;
+  max-width: 1200px; margin: 0 auto; width: 100%; padding-left: 24px; padding-right: 24px;
+}
+.hero-text { max-width: 680px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
+  color: #90C5FF; border: 1px solid rgba(255,255,255,0.18);
+  font-family: var(--font-head); font-size: 12px; font-weight: 600;
+  padding: 8px 16px; border-radius: 50px; letter-spacing: 0.5px; text-transform: uppercase;
+  margin-bottom: 24px; display: inline-flex;
+}
+.hero-tag i { color: var(--accent2); }
+.hero-title {
+  font-family: var(--font-head); font-size: clamp(38px, 6vw, 72px);
+  font-weight: 800; color: white; line-height: 1.08; margin-bottom: 10px;
+}
+.hero-title .highlight {
+  background: linear-gradient(135deg, #5FA8FF, #22D3A5);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-tagline {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(22px, 3vw, 32px); color: rgba(255,255,255,0.8);
+  margin-bottom: 20px;
+}
+.hero-sub {
+  font-size: 17px; color: rgba(255,255,255,0.65); max-width: 500px;
+  margin-bottom: 36px; line-height: 1.7;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.btn-hero-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: white; color: var(--blue); font-family: var(--font-head);
+  font-weight: 700; font-size: 16px; padding: 16px 34px;
+  border-radius: 50px; border: none; cursor: pointer;
+  transition: all 0.3s; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
+.btn-hero-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+  color: white; font-family: var(--font-head); font-weight: 600; font-size: 16px;
+  padding: 16px 34px; border-radius: 50px; border: 1.5px solid rgba(255,255,255,0.25);
+  cursor: pointer; transition: all 0.3s;
+}
+.btn-hero-outline:hover { background: rgba(255,255,255,0.2); }
+.hero-stats {
+  display: flex; gap: 36px; flex-wrap: wrap;
+}
+.hero-stat { }
+.hero-stat .num {
+  font-family: var(--font-head); font-size: 28px; font-weight: 800; color: white;
+}
+.hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+.hero-cards-float {
+  position: absolute; right: 0; bottom: 60px;
+  display: flex; flex-direction: column; gap: 14px;
+  z-index: 3; padding-right: 24px;
+}
+.float-card {
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(20px);
+  border-radius: 16px; padding: 14px 18px; min-width: 220px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  animation: float 4s ease-in-out infinite;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.float-card:nth-child(2) { animation-delay: 1s; }
+.float-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.float-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.float-icon.green { background: #DCFCE7; color: #16A34A; }
+.float-icon.blue { background: var(--sky); color: var(--blue); }
+.float-card-title { font-family: var(--font-head); font-size: 13px; font-weight: 700; color: var(--dark); }
+.float-card-sub { font-size: 11px; color: var(--gray); }
+.float-card-bar { height: 5px; background: #E5E7EB; border-radius: 50px; overflow: hidden; }
+.float-card-bar-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--blue), var(--accent2)); }
+
+/* ===== SECTION HEADERS ===== */
+.section-header { margin-bottom: 48px; }
+.section-header.center { text-align: center; }
+.section-header.center .section-sub { margin: 12px auto 0; }
+
+/* ===== POPULAR DESTINATIONS ===== */
+#destinations { background: var(--sky2); }
+.dest-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 240px 240px; gap: 16px; }
+.dest-card {
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  cursor: pointer; group: true;
+}
+.dest-card:first-child { grid-row: 1 / 3; }
+.dest-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.dest-card:hover img { transform: scale(1.07); }
+.dest-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,18,37,0.8) 0%, transparent 60%);
+}
+.dest-info {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 20px;
+}
+.dest-info h3 {
+  font-family: var(--font-head); font-size: 20px; font-weight: 700; color: white;
+}
+.dest-info p { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+.dest-pill {
+  position: absolute; top: 14px; right: 14px;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+  color: var(--blue); font-family: var(--font-head); font-size: 12px; font-weight: 700;
+  padding: 5px 12px; border-radius: 50px;
+}
+
+/* ===== AI INTRO ===== */
+#ai-intro { background: white; }
+.ai-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.ai-feat-card {
+  background: var(--sky2); border-radius: var(--radius); padding: 30px 24px;
+  border: 1.5px solid rgba(26,107,245,0.08); transition: all 0.3s;
+}
+.ai-feat-card:hover { background: white; box-shadow: var(--shadow); transform: translateY(-4px); }
+.ai-feat-icon {
+  width: 52px; height: 52px; background: var(--sky); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue); font-size: 22px; margin-bottom: 18px;
+}
+.ai-feat-card h3 {
+  font-family: var(--font-head); font-size: 17px; font-weight: 700;
+  color: var(--navy); margin-bottom: 8px;
+}
+.ai-feat-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+/* ===== AI PLANNER ===== */
+#ai-planner { background: var(--sky2); }
+.planner-wrap {
+  background: white; border-radius: 24px; padding: 40px;
+  box-shadow: var(--shadow-lg); border: 1.5px solid rgba(26,107,245,0.08);
+}
+.planner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label {
+  font-family: var(--font-head); font-size: 13px; font-weight: 600;
+  color: var(--navy); letter-spacing: 0.2px;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 13px 16px; border-radius: var(--radius-sm);
+  border: 1.5px solid #E2E8F0; background: var(--sky2);
+  font-family: var(--font-body); font-size: 14px; color: var(--dark);
+  outline: none; transition: all 0.2s;
+}
+.form-group input:focus, .form-group select:focus { border-color: var(--blue); background: white; box-shadow: 0 0 0 4px rgba(26,107,245,0.08); }
+.form-group .range-wrap { display: flex; align-items: center; gap: 12px; }
+.range-wrap input[type="range"] {
+  flex: 1; height: 6px; background: var(--sky); padding: 0;
+  border: none; cursor: pointer;
+  accent-color: var(--blue);
+}
+.range-val {
+  font-family: var(--font-head); font-size: 14px; font-weight: 700;
+  color: var(--blue); min-width: 70px; text-align: right;
+}
+.pref-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.pref-chip {
+  padding: 7px 14px; border-radius: 50px; font-size: 13px; font-weight: 500;
+  border: 1.5px solid #E2E8F0; cursor: pointer; transition: all 0.2s;
+  font-family: var(--font-head); color: var(--gray);
+}
+.pref-chip.active, .pref-chip:hover { border-color: var(--blue); background: var(--sky); color: var(--blue); }
+.planner-submit { margin-top: 28px; text-align: center; }
+.ai-result {
+  margin-top: 36px; padding-top: 36px;
+  border-top: 1.5px solid rgba(26,107,245,0.1);
+  display: none;
+}
+.ai-result.show { display: block; }
+.ai-result-header {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+}
+.ai-result-icon {
+  width: 48px; height: 48px; background: linear-gradient(135deg, var(--blue), var(--accent2));
+  border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 20px; flex-shrink: 0;
+}
+.ai-result-header h3 {
+  font-family: var(--font-head); font-size: 22px; font-weight: 800; color: var(--navy);
+}
+.ai-result-header p { font-size: 14px; color: var(--gray); }
+.day-cards { display: flex; flex-direction: column; gap: 16px; }
+.day-card {
+  background: var(--sky2); border-radius: 14px; overflow: hidden;
+  border: 1.5px solid rgba(26,107,245,0.08);
+}
+.day-card-header {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+  padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;
+}
+.day-card-header h4 {
+  font-family: var(--font-head); font-size: 15px; font-weight: 700; color: white;
+}
+.day-card-header span { font-size: 13px; color: rgba(255,255,255,0.8); }
+.day-card-body { padding: 18px 20px; }
+.activity {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 10px 0; border-bottom: 1px dashed rgba(26,107,245,0.1);
+}
+.activity:last-child { border-bottom: none; padding-bottom: 0; }
+.act-time {
+  font-family: var(--font-head); font-size: 11px; font-weight: 700;
+  color: var(--blue); min-width: 48px; padding-top: 2px;
+}
+.act-dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+.act-info h5 { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: var(--dark); }
+.act-info p { font-size: 13px; color: var(--gray); }
+.budget-cards {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px;
+}
+.budget-card {
+  background: white; border-radius: 12px; padding: 16px; text-align: center;
+  border: 1.5px solid rgba(26,107,245,0.08);
+}
+.budget-card .amt {
+  font-family: var(--font-head); font-size: 18px; font-weight: 800; color: var(--navy);
+}
+.budget-card .lbl { font-size: 12px; color: var(--gray); margin-top: 4px; }
+.budget-card .icon { font-size: 22px; margin-bottom: 8px; }
+
+/* ===== FLIGHTS ===== */
+#flights { background: white; }
+.flight-search {
+  background: var(--sky2); border-radius: var(--radius); padding: 28px;
+  margin-bottom: 36px; border: 1.5px solid rgba(26,107,245,0.08);
+}
+.flight-search-grid {
+  display: grid; grid-template-columns: 2fr 2fr 1fr 1fr;
+  gap: 16px; align-items: end;
+}
+.flight-cards { display: flex; flex-direction: column; gap: 16px; }
+.flight-card {
+  background: var(--sky2); border-radius: var(--radius); padding: 20px 24px;
+  display: grid; grid-template-columns: auto 1fr auto auto;
+  align-items: center; gap: 24px;
+  border: 1.5px solid rgba(26,107,245,0.06); transition: all 0.3s;
+}
+.flight-card:hover { background: white; box-shadow: var(--shadow); border-color: rgba(26,107,245,0.15); }
+.airline-logo {
+  width: 52px; height: 52px; border-radius: 12px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 800; color: white;
+}
+.flight-route { display: flex; align-items: center; gap: 16px; }
+.flight-city { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: var(--navy); }
+.flight-time { font-size: 13px; color: var(--gray); margin-top: 2px; }
+.flight-line {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.flight-line-bar {
+  width: 100%; height: 2px; background: var(--gray2); position: relative;
+}
+.flight-line-bar::after {
+  content: '✈'; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%); font-size: 16px;
+  background: var(--sky2); padding: 0 6px;
+}
+.flight-dur { font-family: var(--font-head); font-size: 12px; font-weight: 600; color: var(--gray); }
+.flight-price {
+  font-family: var(--font-head); font-size: 26px; font-weight: 800;
+  color: var(--blue); text-align: right;
+}
+.flight-price-sub { font-size: 12px; color: var(--gray); text-align: right; }
+.flight-action { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.cheapest-tag {
+  background: #DCFCE7; color: #16A34A; font-family: var(--font-head);
+  font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 50px;
+}
+
+/* ===== BUS BOOKING ===== */
+#bus { background: var(--sky2); }
+.bus-cards { display: flex; flex-direction: column; gap: 16px; }
+.bus-card {
+  background: white; border-radius: var(--radius); padding: 22px 26px;
+  display: grid; grid-template-columns: auto 1fr auto auto;
+  align-items: center; gap: 24px;
+  border: 1.5px solid rgba(26,107,245,0.06); transition: all 0.3s;
+}
+.bus-card:hover { box-shadow: var(--shadow); }
+.bus-logo-wrap {
+  width: 56px; height: 56px; border-radius: 12px; background: var(--sky2);
+  display: flex; align-items: center; justify-content: center; font-size: 24px;
+}
+.bus-info h3 { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--dark); }
+.bus-info p { font-size: 13px; color: var(--gray); margin-top: 2px; }
+.bus-chips { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.bus-chip {
+  padding: 3px 10px; border-radius: 50px; font-size: 11px; font-weight: 600;
+  background: var(--sky); color: var(--blue);
+}
+.bus-timing { text-align: center; }
+.bus-timing .dep { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: var(--navy); }
+.bus-timing .arr { font-family: var(--font-head); font-size: 13px; color: var(--gray); }
+.bus-timing .dur { font-size: 12px; color: var(--gray2); margin-top: 4px; }
+.bus-price-wrap { text-align: right; }
+.bus-price { font-family: var(--font-head); font-size: 24px; font-weight: 800; color: var(--navy); }
+.bus-price-sub { font-size: 12px; color: var(--gray); }
+.seat-grid { display: grid; grid-template-columns: repeat(4, 32px); gap: 6px; margin-top: 16px; }
+.seat {
+  width: 32px; height: 32px; border-radius: 8px; border: 2px solid #E2E8F0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.seat.available { background: #F0FDF4; border-color: #22C55E; color: #16A34A; }
+.seat.booked { background: #FEF2F2; border-color: #EF4444; color: #DC2626; cursor: not-allowed; }
+.seat.selected { background: var(--blue); border-color: var(--blue); color: white; }
+.seat.ladies { background: #FDF4FF; border-color: #A855F7; color: #9333EA; }
+
+/* ===== HOTELS ===== */
+#hotels { background: white; }
+.hotel-filter { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+.filter-btn {
+  padding: 8px 18px; border-radius: 50px; font-family: var(--font-head);
+  font-size: 13px; font-weight: 600; border: 1.5px solid #E2E8F0;
+  cursor: pointer; transition: all 0.2s; background: white;
+  color: var(--gray);
+}
+.filter-btn.active, .filter-btn:hover { border-color: var(--blue); background: var(--sky); color: var(--blue); }
+.hotel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.hotel-card {
+  background: white; border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); border: 1.5px solid rgba(26,107,245,0.06);
+  transition: all 0.3s;
+}
+.hotel-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.hotel-img { width: 100%; height: 200px; object-fit: cover; position: relative; display: block; }
+.hotel-img-wrap { position: relative; overflow: hidden; height: 200px; }
+.hotel-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.hotel-card:hover .hotel-img-wrap img { transform: scale(1.05); }
+.hotel-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(6,18,37,0.75); backdrop-filter: blur(8px);
+  color: white; font-family: var(--font-head); font-size: 11px; font-weight: 700;
+  padding: 5px 12px; border-radius: 50px;
+}
+.hotel-fav {
+  position: absolute; top: 12px; right: 12px;
+  width: 34px; height: 34px; background: rgba(255,255,255,0.9);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; cursor: pointer;
+}
+.hotel-body { padding: 18px 20px; }
+.hotel-name { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--dark); }
+.hotel-loc { font-size: 13px; color: var(--gray); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+.hotel-stars { display: flex; gap: 2px; margin: 10px 0; }
+.hotel-stars i { color: #F59E0B; font-size: 13px; }
+.hotel-price-row { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+.hotel-price { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: var(--blue); }
+.hotel-price span { font-size: 13px; font-weight: 400; color: var(--gray); }
+.hotel-reviews { font-size: 13px; color: var(--gray); }
+.hotel-reviews strong { color: var(--dark); }
+.compare-row {
+  display: flex; gap: 8px; margin: 10px 0;
+  font-size: 12px; color: var(--gray);
+}
+.compare-row .other-price { text-decoration: line-through; color: var(--gray2); }
+.compare-row .save-badge {
+  background: #DCFCE7; color: #16A34A; font-weight: 700; padding: 2px 8px; border-radius: 50px;
+}
+
+/* ===== EXPENSE TRACKER ===== */
+#expense { background: var(--sky2); }
+.expense-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; }
+.expense-left { }
+.expense-card {
+  background: white; border-radius: var(--radius); padding: 28px;
+  box-shadow: var(--shadow); border: 1.5px solid rgba(26,107,245,0.06);
+}
+.budget-circle-wrap { display: flex; justify-content: center; margin: 24px 0; }
+.budget-donut {
+  position: relative; width: 160px; height: 160px;
+}
+.budget-donut svg { transform: rotate(-90deg); }
+.budget-donut .donut-bg { fill: none; stroke: var(--sky); stroke-width: 18; }
+.budget-donut .donut-fill { fill: none; stroke: var(--blue); stroke-width: 18; stroke-linecap: round; stroke-dasharray: 0 440; transition: stroke-dasharray 1.5s ease; }
+.budget-donut .donut-fill.green { stroke: var(--accent2); }
+.budget-center {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.budget-center .pct { font-family: var(--font-head); font-size: 28px; font-weight: 800; color: var(--navy); }
+.budget-center .lbl { font-size: 12px; color: var(--gray); }
+.category-list { display: flex; flex-direction: column; gap: 12px; }
+.cat-item { display: flex; align-items: center; gap: 12px; }
+.cat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.cat-name { font-size: 14px; font-weight: 500; flex: 1; }
+.cat-bar-wrap { flex: 2; height: 7px; background: var(--sky); border-radius: 50px; overflow: hidden; }
+.cat-bar { height: 100%; border-radius: 50px; transition: width 1.5s ease; }
+.cat-amount { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--dark); min-width: 70px; text-align: right; }
+.upload-zone {
+  border: 2px dashed rgba(26,107,245,0.3); border-radius: var(--radius);
+  padding: 28px; text-align: center; cursor: pointer; transition: all 0.2s;
+  background: var(--sky2); margin-top: 18px;
+}
+.upload-zone:hover { border-color: var(--blue); background: var(--sky); }
+.upload-zone i { font-size: 32px; color: var(--blue-light); margin-bottom: 10px; }
+.upload-zone p { font-size: 14px; color: var(--gray); }
+.upload-zone span { font-family: var(--font-head); font-size: 13px; font-weight: 600; color: var(--blue); }
+.recent-expenses { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.exp-item {
+  display: flex; align-items: center; gap: 14px;
+  background: white; border-radius: 12px; padding: 12px 16px;
+  border: 1px solid rgba(26,107,245,0.08);
+}
+.exp-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.exp-name { flex: 1; }
+.exp-name h5 { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: var(--dark); }
+.exp-name p { font-size: 12px; color: var(--gray); }
+.exp-amount { font-family: var(--font-head); font-size: 15px; font-weight: 700; }
+.exp-amount.red { color: #EF4444; }
+.exp-amount.green { color: #16A34A; }
+.ai-analysis {
+  background: linear-gradient(135deg, var(--navy), #0D3265);
+  border-radius: var(--radius); padding: 24px; margin-top: 20px;
+  color: white;
+}
+.ai-analysis h4 { font-family: var(--font-head); font-size: 16px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.analysis-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 14px; color: rgba(255,255,255,0.8); }
+.analysis-item i { color: var(--accent2); margin-top: 2px; }
+
+/* ===== GALLERY ===== */
+#gallery { background: white; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 200px 200px;
+  gap: 14px;
+}
+.gallery-item {
+  position: relative; border-radius: 14px; overflow: hidden; cursor: pointer;
+  transition: transform 0.3s;
+}
+.gallery-item:hover { transform: scale(1.02); }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,18,37,0.7) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; align-items: flex-end; padding: 16px;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay p { font-family: var(--font-head); font-size: 14px; font-weight: 600; color: white; }
+.journal-entries { margin-top: 36px; display: flex; flex-direction: column; gap: 16px; }
+.journal-entry {
+  display: flex; gap: 18px; background: var(--sky2); border-radius: 14px; padding: 20px;
+  border: 1.5px solid rgba(26,107,245,0.08);
+}
+.journal-date {
+  text-align: center; background: var(--blue); color: white;
+  border-radius: 12px; padding: 12px 16px; flex-shrink: 0;
+  min-width: 64px;
+}
+.journal-date .d { font-family: var(--font-head); font-size: 24px; font-weight: 800; }
+.journal-date .m { font-size: 12px; font-weight: 600; text-transform: uppercase; opacity: 0.85; }
+.journal-content h4 { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--dark); }
+.journal-content p { font-size: 14px; color: var(--gray); margin-top: 6px; line-height: 1.6; }
+.journal-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.journal-tag { padding: 3px 10px; border-radius: 50px; background: var(--sky); color: var(--blue); font-size: 12px; font-weight: 600; }
+
+/* ===== ROUTE MAP ===== */
+#route { background: var(--sky2); }
+.route-wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: start; }
+.map-mock {
+  background: white; border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); position: relative; height: 420px;
+}
+.map-bg {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, #E8F4FF 0%, #C8E0FF 30%, #D4EDDA 60%, #EBF5EB 100%);
+  position: relative;
+}
+.map-roads { position: absolute; inset: 0; }
+.map-roads svg { width: 100%; height: 100%; }
+.map-pin {
+  position: absolute; display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; transform: translate(-50%, -50%);
+}
+.map-pin-dot {
+  width: 36px; height: 36px; background: var(--blue); border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(26,107,245,0.4); transition: all 0.2s;
+}
+.map-pin-dot i { transform: rotate(45deg); color: white; font-size: 14px; }
+.map-pin-dot.red { background: var(--accent); box-shadow: 0 4px 12px rgba(255,107,53,0.4); }
+.map-pin-dot.green { background: var(--accent2); box-shadow: 0 4px 12px rgba(34,211,165,0.4); }
+.map-pin-label {
+  margin-top: 6px; background: white; border-radius: 6px; padding: 4px 10px;
+  font-family: var(--font-head); font-size: 11px; font-weight: 700; color: var(--dark);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12); white-space: nowrap;
+}
+.route-stops { display: flex; flex-direction: column; gap: 16px; }
+.route-stop {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: white; border-radius: 14px; padding: 16px;
+  box-shadow: 0 4px 16px rgba(26,107,245,0.06); position: relative;
+}
+.stop-num {
+  width: 36px; height: 36px; background: var(--blue); color: white;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+.stop-num.accent { background: var(--accent); }
+.stop-num.green { background: var(--accent2); }
+.stop-info h4 { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--dark); }
+.stop-info p { font-size: 13px; color: var(--gray); margin-top: 2px; }
+.stop-meta { display: flex; gap: 12px; margin-top: 8px; }
+.stop-meta span { font-size: 12px; color: var(--gray); display: flex; align-items: center; gap: 4px; }
+.stop-meta span i { color: var(--blue); }
+.connector-line {
+  width: 2px; background: linear-gradient(to bottom, var(--blue-light), rgba(26,107,245,0.1));
+  margin-left: 18px; height: 16px;
+}
+.savings-banner {
+  background: linear-gradient(135deg, #0A2347, #1A6BF5);
+  border-radius: var(--radius); padding: 22px 26px;
+  display: flex; align-items: center; gap: 16px; margin-top: 24px;
+}
+.savings-banner i { font-size: 32px; color: var(--accent2); }
+.savings-banner h4 { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: white; }
+.savings-banner p { font-size: 14px; color: rgba(255,255,255,0.7); }
+
+/* ===== DEALS ===== */
+#deals { background: white; }
+.deals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.deal-card {
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); border: 1.5px solid rgba(26,107,245,0.06);
+  transition: all 0.3s; position: relative;
+}
+.deal-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.deal-img { height: 160px; overflow: hidden; }
+.deal-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.deal-card:hover .deal-img img { transform: scale(1.06); }
+.deal-body { padding: 18px; background: white; }
+.deal-type {
+  font-family: var(--font-head); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray);
+  margin-bottom: 6px;
+}
+.deal-body h4 { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--dark); }
+.deal-price {
+  display: flex; align-items: baseline; gap: 8px; margin-top: 10px;
+}
+.deal-price .now { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: var(--blue); }
+.deal-price .was { font-size: 14px; color: var(--gray2); text-decoration: line-through; }
+.deal-save { background: var(--accent); color: white; font-family: var(--font-head); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 50px; }
+.deal-ribbon {
+  position: absolute; top: 12px; left: -8px;
+  background: var(--accent); color: white; font-family: var(--font-head);
+  font-size: 11px; font-weight: 700; padding: 5px 14px 5px 18px;
+  border-radius: 0 4px 4px 0;
+}
+.deal-ribbon::before {
+  content: ''; position: absolute; left: 0; bottom: -6px;
+  border-left: 8px solid transparent; border-top: 6px solid #c04518;
+}
+.deal-timer {
+  display: flex; align-items: center; gap: 6px; margin-top: 8px;
+  font-size: 12px; color: var(--accent); font-weight: 600; font-family: var(--font-head);
+}
+.countdown {
+  display: flex; gap: 4px;
+}
+.ct-box {
+  background: var(--navy); color: white; border-radius: 5px;
+  padding: 2px 6px; font-family: var(--font-head); font-size: 13px; font-weight: 700;
+}
+
+/* ===== REVIEWS ===== */
+#reviews { background: var(--sky2); }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.review-card {
+  background: white; border-radius: var(--radius); padding: 26px;
+  box-shadow: var(--shadow); border: 1.5px solid rgba(26,107,245,0.06);
+  transition: all 0.3s;
+}
+.review-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.review-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+.review-stars i { color: #F59E0B; font-size: 15px; }
+.review-text {
+  font-size: 15px; line-height: 1.7; color: var(--dark); font-style: italic;
+  margin-bottom: 18px;
+  position: relative;
+}
+.review-text::before {
+  content: '"';
+  font-family: var(--font-display); font-size: 60px; color: var(--sky);
+  position: absolute; top: -16px; left: -8px; line-height: 1;
+}
+.reviewer { display: flex; align-items: center; gap: 12px; }
+.reviewer-avatar {
+  width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+  flex-shrink: 0; background: var(--sky); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--blue);
+}
+.reviewer-name { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--dark); }
+.reviewer-city { font-size: 13px; color: var(--gray); }
+.rating-summary {
+  background: linear-gradient(135deg, var(--blue), #0D3265);
+  border-radius: var(--radius); padding: 32px; color: white; text-align: center;
+  margin-bottom: 32px;
+}
+.rating-num { font-family: var(--font-head); font-size: 64px; font-weight: 800; line-height: 1; }
+.rating-label { font-size: 14px; opacity: 0.75; margin-top: 4px; }
+.rating-bars { margin-top: 20px; }
+.rb-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.rb-lbl { font-size: 13px; font-weight: 600; min-width: 20px; }
+.rb-bar { flex: 1; height: 7px; background: rgba(255,255,255,0.2); border-radius: 50px; overflow: hidden; }
+.rb-fill { height: 100%; background: white; border-radius: 50px; }
+.rb-count { font-size: 12px; min-width: 30px; opacity: 0.7; }
+
+/* ===== SUBSCRIPTION ===== */
+#subscription { background: white; }
+.plan-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 780px; margin: 0 auto; }
+.plan-card {
+  border-radius: var(--radius); padding: 36px 30px;
+  border: 2px solid rgba(26,107,245,0.1);
+  position: relative; overflow: hidden; transition: all 0.3s;
+}
+.plan-card:hover { border-color: var(--blue); box-shadow: var(--shadow); }
+.plan-card.premium {
+  background: linear-gradient(150deg, #061225 0%, #0D3265 50%, #1A6BF5 100%);
+  border-color: transparent;
+  box-shadow: var(--shadow-lg);
+}
+.plan-card.free { background: var(--sky2); }
+.plan-popular {
+  position: absolute; top: 20px; right: -28px;
+  background: var(--accent); color: white; font-family: var(--font-head);
+  font-size: 11px; font-weight: 700; padding: 6px 40px;
+  transform: rotate(30deg); letter-spacing: 0.5px;
+}
+.plan-name {
+  font-family: var(--font-head); font-size: 14px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+}
+.plan-card.free .plan-name { color: var(--blue); }
+.plan-card.premium .plan-name { color: rgba(255,255,255,0.7); }
+.plan-price {
+  font-family: var(--font-head); font-size: 48px; font-weight: 800; line-height: 1;
+}
+.plan-card.free .plan-price { color: var(--navy); }
+.plan-card.premium .plan-price { color: white; }
+.plan-period { font-size: 15px; color: var(--gray); }
+.plan-card.premium .plan-period { color: rgba(255,255,255,0.6); }
+.plan-divider { height: 1px; background: rgba(26,107,245,0.1); margin: 22px 0; }
+.plan-card.premium .plan-divider { background: rgba(255,255,255,0.15); }
+.plan-features { display: flex; flex-direction: column; gap: 11px; }
+.plan-feat {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px;
+}
+.plan-card.free .plan-feat { color: var(--dark); }
+.plan-card.premium .plan-feat { color: rgba(255,255,255,0.9); }
+.plan-feat i.fa-check { color: var(--accent2); }
+.plan-feat i.fa-times { color: var(--gray2); }
+.plan-feat.disabled { opacity: 0.5; }
+.plan-btn-wrap { margin-top: 28px; }
+
+/* ===== REVENUE ===== */
+#revenue { background: var(--sky2); }
+.revenue-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.rev-card {
+  background: white; border-radius: var(--radius); padding: 24px 20px;
+  text-align: center; border: 1.5px solid rgba(26,107,245,0.06);
+  box-shadow: var(--shadow); transition: all 0.3s;
+}
+.rev-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.rev-icon { font-size: 30px; margin-bottom: 14px; }
+.rev-card h4 { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+.rev-card p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+.rev-pct {
+  font-family: var(--font-head); font-size: 22px; font-weight: 800;
+  color: var(--blue); margin-top: 12px;
+}
+
+/* ===== COMPARISON ===== */
+#comparison { background: white; }
+.comp-table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); border: 1.5px solid rgba(26,107,245,0.08); }
+table { width: 100%; border-collapse: collapse; background: white; }
+thead th {
+  padding: 18px 20px; text-align: left; background: var(--sky2);
+  font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--navy);
+  border-bottom: 2px solid rgba(26,107,245,0.1);
+}
+thead th:first-child { border-radius: var(--radius) 0 0 0; }
+thead th:last-child { border-radius: 0 var(--radius) 0 0; }
+thead th.voyora-col {
+  background: linear-gradient(135deg, var(--blue) 0%, #0D3265 100%);
+  color: white; position: relative;
+}
+tbody tr { border-bottom: 1px solid rgba(26,107,245,0.06); transition: background 0.2s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--sky2); }
+tbody td {
+  padding: 15px 20px; font-size: 14px; color: var(--dark);
+}
+tbody td:first-child { font-weight: 600; color: var(--navy); font-family: var(--font-head); }
+tbody td.voyora-col { background: rgba(26,107,245,0.04); }
+.check-yes { color: #16A34A; font-size: 16px; }
+.check-no { color: #E5E7EB; font-size: 16px; }
+.check-partial { color: #D97706; font-size: 14px; font-weight: 700; }
+.voyora-badge-table {
+  background: var(--blue); color: white; font-family: var(--font-head);
+  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 50px; margin-left: 6px;
+}
+
+/* ===== FOOTER ===== */
+#footer {
+  background: var(--navy); color: rgba(255,255,255,0.75); padding: 70px 0 0;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand .logo { color: white; margin-bottom: 14px; }
+.footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; }
+.footer-social { display: flex; gap: 10px; margin-top: 22px; }
+.social-icon {
+  width: 38px; height: 38px; background: rgba(255,255,255,0.08);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.6); font-size: 15px; transition: all 0.2s; cursor: pointer;
+}
+.social-icon:hover { background: var(--blue); color: white; }
+.footer-col h4 {
+  font-family: var(--font-head); font-size: 14px; font-weight: 700;
+  color: white; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  font-size: 14px; color: rgba(255,255,255,0.6); transition: all 0.2s;
+}
+.footer-col ul li a:hover { color: var(--blue-light); }
+.newsletter-form { display: flex; gap: 8px; margin-top: 14px; }
+.newsletter-form input {
+  flex: 1; padding: 12px 16px; border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.07);
+  color: white; font-family: var(--font-body); font-size: 14px; outline: none;
+}
+.newsletter-form input::placeholder { color: rgba(255,255,255,0.35); }
+.newsletter-form button {
+  padding: 12px 18px; background: var(--blue); color: white;
+  border: none; border-radius: var(--radius-sm); cursor: pointer; transition: 0.2s;
+  font-size: 14px;
+}
+.newsletter-form button:hover { background: #0D5CE0; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07); padding: 22px 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-bottom p { font-size: 13px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); transition: 0.2s; }
+.footer-links a:hover { color: var(--blue-light); }
+
+/* ===== PAGE TABS ===== */
+.page-nav {
+  display: flex; gap: 10px; overflow-x: auto;
+  padding-bottom: 4px; margin-bottom: 36px; flex-wrap: wrap;
+}
+.page-nav::-webkit-scrollbar { height: 0; }
+
+/* ===== LOADING SPINNER ===== */
+.spinner {
+  display: inline-block; width: 20px; height: 20px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: white; border-radius: 50%;
+  animation: spin 0.8s linear infinite; vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--navy); color: white; border-radius: 12px;
+  padding: 14px 20px; font-family: var(--font-head); font-size: 14px; font-weight: 500;
+  box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 10px;
+  transform: translateX(200px); opacity: 0; transition: all 0.3s;
+}
+.toast.show { transform: translateX(0); opacity: 1; }
+.toast i { color: var(--accent2); }
+
+/* ===== MOBILE ===== */
+@media (max-width: 1024px) {
+  .hero-cards-float { display: none; }
+  .dest-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .dest-card:first-child { grid-row: auto; grid-column: span 2; }
+  .ai-features { grid-template-columns: repeat(2, 1fr); }
+  .budget-cards { grid-template-columns: repeat(2, 1fr); }
+  .hotel-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  .revenue-cards { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .deals-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .planner-grid { grid-template-columns: 1fr; }
+  .flight-search-grid { grid-template-columns: 1fr 1fr; }
+  .flight-card { grid-template-columns: auto 1fr; grid-template-rows: auto auto; }
+  .flight-action { grid-column: span 2; flex-direction: row; justify-content: flex-end; }
+  .bus-card { grid-template-columns: 1fr; }
+  .hotel-grid { grid-template-columns: 1fr; }
+  .expense-wrap { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+  .gallery-item:nth-child(1) { grid-column: span 2; height: 220px; }
+  .route-wrap { grid-template-columns: 1fr; }
+  .plan-cards { grid-template-columns: 1fr; max-width: 420px; }
+  .revenue-cards { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .ai-features { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .deals-grid { grid-template-columns: 1fr; }
+  .budget-cards { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { gap: 20px; }
+  .section-pad { padding: 60px 0; }
+}
+@media (max-width: 480px) {
+  .flight-search-grid { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo" onclick="scrollToSection('hero')">
+      <div class="logo-icon"><i class="fas fa-compass"></i></div>
+      VOY<span>ORA</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" onclick="scrollToSection('ai-planner')" class="active">Plan Trip</a>
+      <a href="#" onclick="scrollToSection('flights')">Flights</a>
+      <a href="#" onclick="scrollToSection('bus')">Bus</a>
+      <a href="#" onclick="scrollToSection('hotels')">Hotels</a>
+      <a href="#" onclick="scrollToSection('deals')">Deals</a>
+      <a href="#" onclick="scrollToSection('expense')">Tracker</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn-outline" style="padding:10px 20px;font-size:13px;" onclick="showToast('Signing you in...')">Login</button>
+      <button class="btn-primary" style="padding:10px 20px;font-size:13px;" onclick="scrollToSection('ai-planner')">Start Free</button>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="scrollToSection('ai-planner');toggleMenu()">Plan Trip</a>
+  <a href="#" onclick="scrollToSection('flights');toggleMenu()">Flights</a>
+  <a href="#" onclick="scrollToSection('bus');toggleMenu()">Bus</a>
+  <a href="#" onclick="scrollToSection('hotels');toggleMenu()">Hotels</a>
+  <a href="#" onclick="scrollToSection('deals');toggleMenu()">Deals</a>
+  <a href="#" onclick="scrollToSection('expense');toggleMenu()">Expense Tracker</a>
+  <a href="#" onclick="scrollToSection('subscription');toggleMenu()">Pricing</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-shapes">
+    <div class="hs1"></div>
+    <div class="hs2"></div>
+    <div class="hs3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-tag fade-in">
+        <i class="fas fa-robot"></i> Powered by AI
+      </div>
+      <h1 class="hero-title fade-up">Travel India<br>Like Never <span class="highlight">Before</span></h1>
+      <p class="hero-tagline fade-up">Plan Smart. Travel Easy.</p>
+      <p class="hero-sub fade-up">India's first AI-powered travel planner built for students, families & budget travelers. Get complete itineraries, flight deals & hotel picks in seconds.</p>
+      <div class="hero-btns fade-up">
+        <button class="btn-hero-primary" onclick="scrollToSection('ai-planner')">
+          <i class="fas fa-magic"></i> Start Planning — Free
+        </button>
+        <button class="btn-hero-outline" onclick="scrollToSection('destinations')">
+          <i class="fas fa-play-circle"></i> Explore Destinations
+        </button>
+      </div>
+      <div class="hero-stats fade-up">
+        <div class="hero-stat">
+          <div class="num">2.4L+</div>
+          <div class="lbl">Trips Planned</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">₹890 Cr</div>
+          <div class="lbl">Saved by Users</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">4.8★</div>
+          <div class="lbl">User Rating</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">180+</div>
+          <div class="lbl">Destinations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-cards-float">
+    <div class="float-card">
+      <div class="float-card-top">
+        <div class="float-icon green"><i class="fas fa-route"></i></div>
+        <div>
+          <div class="float-card-title">AI Itinerary Ready</div>
+          <div class="float-card-sub">Goa · 5 Days · ₹18,400</div>
+        </div>
+      </div>
+      <div class="float-card-bar"><div class="float-card-bar-fill" style="width:72%"></div></div>
+    </div>
+    <div class="float-card">
+      <div class="float-card-top">
+        <div class="float-icon blue"><i class="fas fa-tag"></i></div>
+        <div>
+          <div class="float-card-title">Flight Deal Found!</div>
+          <div class="float-card-sub">DEL → BOM · ₹2,399 only</div>
+        </div>
+      </div>
+      <div class="float-card-bar"><div class="float-card-bar-fill" style="width:90%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLIGHT & BUS DEALS BANNER -->
+<section style="background: linear-gradient(135deg, var(--navy) 0%, #0D3265 50%, var(--blue) 100%); padding: 18px 0;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;color:white;">
+        <i class="fas fa-plane" style="color:#90C5FF"></i>
+        <span style="font-family:var(--font-head);font-size:14px;font-weight:500;">
+          <strong>Flights from ₹999</strong> &nbsp;|&nbsp; Use code: <span style="background:rgba(255,255,255,0.15);padding:2px 8px;border-radius:6px;font-weight:700;">VOYFLIGHT</span>
+        </span>
+      </div>
+      <div style="width:1px;height:24px;background:rgba(255,255,255,0.2);"></div>
+      <div style="display:flex;align-items:center;gap:10px;color:white;">
+        <i class="fas fa-bus" style="color:#90C5FF"></i>
+        <span style="font-family:var(--font-head);font-size:14px;font-weight:500;">
+          <strong>Bus tickets from ₹149</strong> &nbsp;|&nbsp; Use code: <span style="background:rgba(255,255,255,0.15);padding:2px 8px;border-radius:6px;font-weight:700;">VOYBUS25</span>
+        </span>
+      </div>
+      <div style="width:1px;height:24px;background:rgba(255,255,255,0.2);"></div>
+      <div style="display:flex;align-items:center;gap:10px;color:white;">
+        <i class="fas fa-hotel" style="color:#90C5FF"></i>
+        <span style="font-family:var(--font-head);font-size:14px;font-weight:500;">
+          <strong>Hotels up to 40% off</strong> &nbsp;|&nbsp; Use code: <span style="background:rgba(255,255,255,0.15);padding:2px 8px;border-radius:6px;font-weight:700;">VOYHOTEL</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI INTRO -->
+<section id="ai-intro" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-robot"></i> How It Works</div>
+      <h2 class="section-title">AI That Plans Your<br>Entire Trip In Seconds</h2>
+      <p class="section-sub">Just enter your destination, budget and dates — Voyora's AI builds a complete, optimized travel plan tailored for Indian travelers.</p>
+    </div>
+    <div class="ai-features">
+      <div class="ai-feat-card fade-up">
+        <div class="ai-feat-icon"><i class="fas fa-brain"></i></div>
+        <h3>Smart Itinerary</h3>
+        <p>AI creates day-wise itineraries based on your travel style, budget, and preferences — no more spending hours on research.</p>
+      </div>
+      <div class="ai-feat-card fade-up" style="transition-delay:0.1s">
+        <div class="ai-feat-icon"><i class="fas fa-rupee-sign"></i></div>
+        <h3>Budget Optimizer</h3>
+        <p>Get the best trips for your money. Voyora compares prices in real-time and recommends the most cost-effective options.</p>
+      </div>
+      <div class="ai-feat-card fade-up" style="transition-delay:0.2s">
+        <div class="ai-feat-icon"><i class="fas fa-route"></i></div>
+        <h3>Route Optimizer</h3>
+        <p>Smart route planning groups nearby attractions together to minimize travel time and transport costs.</p>
+      </div>
+      <div class="ai-feat-card fade-up" style="transition-delay:0.05s">
+        <div class="ai-feat-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <h3>Local Discovery</h3>
+        <p>Uncover hidden gems, local eateries and off-the-beaten-path spots that guidebooks miss.</p>
+      </div>
+      <div class="ai-feat-card fade-up" style="transition-delay:0.15s">
+        <div class="ai-feat-icon"><i class="fas fa-wallet"></i></div>
+        <h3>Expense Tracking</h3>
+        <p>Upload bills, track spending in real time and get AI insights to stay within budget throughout your trip.</p>
+      </div>
+      <div class="ai-feat-card fade-up" style="transition-delay:0.25s">
+        <div class="ai-feat-icon"><i class="fas fa-camera"></i></div>
+        <h3>Travel Journal</h3>
+        <p>Capture and organize all your memories with unlimited photo uploads and a beautiful timeline layout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR DESTINATIONS -->
+<section id="destinations" class="section-pad">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="tag"><i class="fas fa-fire"></i> Trending Now</div>
+      <h2 class="section-title">Popular Destinations</h2>
+      <p class="section-sub">Handpicked destinations loved by Indian travelers — from beaches to hills to heritage cities.</p>
+    </div>
+    <div class="dest-grid fade-up">
+      <div class="dest-card">
+        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80" alt="Goa">
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <h3>Goa</h3>
+          <p>Sun, Sand & Seafood</p>
+        </div>
+        <div class="dest-pill">From ₹12,000</div>
+      </div>
+      <div class="dest-card">
+        <img src="https://images.unsplash.com/photo-1480082538565-f3c5a8a36d93?w=600&q=80" alt="Manali">
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <h3>Manali</h3>
+          <p>Mountains & Snow</p>
+        </div>
+        <div class="dest-pill">From ₹9,500</div>
+      </div>
+      <div class="dest-card">
+        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80" alt="Rajasthan">
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <h3>Jaipur</h3>
+          <p>Royal Heritage</p>
+        </div>
+        <div class="dest-pill">From ₹8,000</div>
+      </div>
+      <div class="dest-card">
+        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80" alt="Delhi">
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <h3>Delhi</h3>
+          <p>Culture & History</p>
+        </div>
+        <div class="dest-pill">From ₹6,000</div>
+      </div>
+      <div class="dest-card">
+        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80" alt="Kerala">
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <h3>Kerala</h3>
+          <p>Backwaters & Spice</p>
+        </div>
+        <div class="dest-pill">From ₹14,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TRIP PLANNER -->
+<section id="ai-planner" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-robot"></i> AI Planner</div>
+      <h2 class="section-title">Plan Your Dream Trip</h2>
+      <p class="section-sub">Fill in the details and our AI will create a complete personalized itinerary with budgets, hotels, and routes.</p>
+    </div>
+    <div class="planner-wrap fade-up">
+      <div class="planner-grid">
+        <div class="form-group">
+          <label><i class="fas fa-map-marker-alt" style="color:var(--blue);margin-right:6px"></i>Destination</label>
+          <input type="text" id="dest-input" placeholder="e.g. Goa, Manali, Ooty..." value="Goa">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-location-arrow" style="color:var(--blue);margin-right:6px"></i>Travelling From</label>
+          <input type="text" id="from-input" placeholder="e.g. Chennai, Mumbai, Delhi..." value="Chennai">
+        </div>
+        <div class="form-group" style="grid-column:span 2;">
+          <label><i class="fas fa-rupee-sign" style="color:var(--blue);margin-right:6px"></i>Budget Range: <span id="range-label" style="color:var(--blue);font-weight:700;">₹15,000</span> – <span id="range-label2" style="color:var(--blue);font-weight:700;">₹30,000</span></label>
+          <div class="range-wrap">
+            <span style="font-size:12px;color:var(--gray)">₹0</span>
+            <input type="range" min="0" max="100000" value="15000" step="500" id="budget-min" oninput="updateBudget()">
+            <input type="range" min="0" max="100000" value="30000" step="500" id="budget-max" oninput="updateBudget()">
+            <span style="font-size:12px;color:var(--gray)">₹1L</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-calendar" style="color:var(--blue);margin-right:6px"></i>Number of Days</label>
+          <select id="days-input">
+            <option>1 Day</option><option>2 Days</option><option selected>3 Days</option>
+            <option>4 Days</option><option>5 Days</option><option>7 Days</option><option>10 Days</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-users" style="color:var(--blue);margin-right:6px"></i>Travellers</label>
+          <select>
+            <option>Solo (1)</option><option>Couple (2)</option><option selected>Group (3-5)</option><option>Family (4-6)</option>
+          </select>
+        </div>
+        <div class="form-group" style="grid-column:span 2;">
+          <label><i class="fas fa-heart" style="color:var(--blue);margin-right:6px"></i>Travel Preferences</label>
+          <div class="pref-chips">
+            <div class="pref-chip active" onclick="toggleChip(this)">🏖️ Beach</div>
+            <div class="pref-chip" onclick="toggleChip(this)">🏔️ Mountains</div>
+            <div class="pref-chip active" onclick="toggleChip(this)">🍴 Food</div>
+            <div class="pref-chip" onclick="toggleChip(this)">🏛️ Heritage</div>
+            <div class="pref-chip" onclick="toggleChip(this)">🌿 Nature</div>
+            <div class="pref-chip active" onclick="toggleChip(this)">🎉 Nightlife</div>
+            <div class="pref-chip" onclick="toggleChip(this)">🛍️ Shopping</div>
+            <div class="pref-chip" onclick="toggleChip(this)">🧘 Wellness</div>
+            <div class="pref-chip" onclick="toggleChip(this)">🎒 Adventure</div>
+            <div class="pref-chip" onclick="toggleChip(this)">👨‍👩‍👧 Family</div>
+          </div>
+        </div>
+      </div>
+      <div class="planner-submit">
+        <button class="btn-primary" style="font-size:16px;padding:16px 42px;" onclick="generateItinerary()" id="gen-btn">
+          <i class="fas fa-magic"></i> Generate AI Itinerary
+        </button>
+      </div>
+
+      <!-- AI RESULT -->
+      <div class="ai-result" id="ai-result">
+        <div class="ai-result-header">
+          <div class="ai-result-icon"><i class="fas fa-robot"></i></div>
+          <div>
+            <h3>Your AI-Crafted Goa Itinerary</h3>
+            <p>3 Days · 2 Adults + 1 Child · Beach & Food focus · Budget: ₹15K–₹30K</p>
+          </div>
+        </div>
+        <div class="day-cards">
+          <div class="day-card">
+            <div class="day-card-header">
+              <h4>🌅 Day 1 — Arrival & North Goa</h4>
+              <span>Est. ₹4,200</span>
+            </div>
+            <div class="day-card-body">
+              <div class="activity">
+                <div class="act-time">09:00</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Arrive at Goa Airport / Madgaon Station</h5><p>Check in to hotel · Freshen up</p></div>
+              </div>
+              <div class="activity">
+                <div class="act-time">12:00</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Lunch at Fisherman's Wharf</h5><p>Try local Goan fish curry · ₹450/person</p></div>
+              </div>
+              <div class="activity">
+                <div class="act-time">14:00</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Calangute Beach & Fort Aguada</h5><p>Scenic sunset · Free entry</p></div>
+              </div>
+              <div class="activity">
+                <div class="act-time">19:00</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Dinner at Thalassa Greek Restaurant</h5><p>Cliff view dining · ₹700/person</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="day-card">
+            <div class="day-card-header">
+              <h4>🌴 Day 2 — South Goa & Water Sports</h4>
+              <span>Est. ₹5,800</span>
+            </div>
+            <div class="day-card-body">
+              <div class="activity">
+                <div class="act-time">07:30</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Palolem Beach Morning Walk</h5><p>Sunrise beach · Coconut water ₹50</p></div>
+              </div>
+              <div class="activity">
+                <div class="act-time">10:00</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Watersports at Baga Beach</h5><p>Parasailing + Banana boat · ₹1,800/person</p></div>
+              </div>
+              <div class="activity">
+                <div class="act-time">14:30</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Dudhsagar Waterfall Day Trip</h5><p>Jeep safari included · ₹600/person</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="day-card">
+            <div class="day-card-header">
+              <h4>🛍️ Day 3 — Markets & Departure</h4>
+              <span>Est. ₹3,500</span>
+            </div>
+            <div class="day-card-body">
+              <div class="activity">
+                <div class="act-time">09:00</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Anjuna Flea Market</h5><p>Handicrafts, souvenirs, spices</p></div>
+              </div>
+              <div class="activity">
+                <div class="act-time">12:00</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Se Cathedral & Old Goa Heritage</h5><p>UNESCO site · Free entry</p></div>
+              </div>
+              <div class="activity">
+                <div class="act-time">16:00</div>
+                <div class="act-dot"></div>
+                <div class="act-info"><h5>Departure to Airport/Station</h5><p>Cab booked · ₹350</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="budget-cards">
+          <div class="budget-card"><div class="icon">✈️</div><div class="amt">₹4,800</div><div class="lbl">Flights (return)</div></div>
+          <div class="budget-card"><div class="icon">🏨</div><div class="amt">₹5,400</div><div class="lbl">Hotels (2 nights)</div></div>
+          <div class="budget-card"><div class="icon">🍽️</div><div class="amt">₹3,200</div><div class="lbl">Food & Dining</div></div>
+          <div class="budget-card"><div class="icon">🎯</div><div class="amt">₹4,100</div><div class="lbl">Activities & Travel</div></div>
+        </div>
+        <div style="text-align:center;margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-primary" onclick="showToast('Itinerary saved to your account!')"><i class="fas fa-save"></i> Save Itinerary</button>
+          <button class="btn-outline" onclick="showToast('PDF downloaded!')"><i class="fas fa-download"></i> Download PDF</button>
+          <button class="btn-outline" onclick="showToast('Shared via WhatsApp!')"><i class="fab fa-whatsapp"></i> Share</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLIGHT BOOKING -->
+<section id="flights" class="section-pad">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="tag"><i class="fas fa-plane"></i> Flight Booking</div>
+      <h2 class="section-title">Find the Cheapest Flights</h2>
+      <p class="section-sub">Compare live prices across all airlines and book the best deal in seconds.</p>
+    </div>
+    <div class="flight-search fade-up">
+      <div class="flight-search-grid">
+        <div class="form-group">
+          <label>From</label>
+          <input type="text" value="Chennai (MAA)" placeholder="Origin">
+        </div>
+        <div class="form-group">
+          <label>To</label>
+          <input type="text" value="Goa (GOI)" placeholder="Destination">
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" value="2025-03-15">
+        </div>
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <button class="btn-primary" style="width:100%;justify-content:center;" onclick="showToast('Searching best flights...')">
+            <i class="fas fa-search"></i> Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="flight-cards fade-up">
+      <!-- Flight 1 -->
+      <div class="flight-card">
+        <div class="airline-logo" style="background: linear-gradient(135deg,#FF6B00,#FF9500)">✈</div>
+        <div class="flight-route">
+          <div>
+            <div class="flight-city">MAA</div>
+            <div class="flight-time">06:15</div>
+          </div>
+          <div class="flight-line">
+            <div class="flight-dur">2h 10m · Non-stop</div>
+            <div class="flight-line-bar"></div>
+            <div class="flight-dur">IndiGo</div>
+          </div>
+          <div>
+            <div class="flight-city">GOI</div>
+            <div class="flight-time">08:25</div>
+          </div>
+        </div>
+        <div>
+          <div class="flight-price">₹2,399</div>
+          <div class="flight-price-sub">per person</div>
+          <div class="cheapest-tag">🏷 Cheapest</div>
+        </div>
+        <div class="flight-action">
+          <button class="btn-primary" style="font-size:13px;padding:10px 20px;" onclick="showToast('Redirecting to IndiGo booking...')">Book Now</button>
+        </div>
+      </div>
+      <!-- Flight 2 -->
+      <div class="flight-card">
+        <div class="airline-logo" style="background: linear-gradient(135deg,#E31837,#8B0000)">✈</div>
+        <div class="flight-route">
+          <div>
+            <div class="flight-city">MAA</div>
+            <div class="flight-time">08:45</div>
+          </div>
+          <div class="flight-line">
+            <div class="flight-dur">2h 20m · Non-stop</div>
+            <div class="flight-line-bar"></div>
+            <div class="flight-dur">Air India</div>
+          </div>
+          <div>
+            <div class="flight-city">GOI</div>
+            <div class="flight-time">11:05</div>
+          </div>
+        </div>
+        <div>
+          <div class="flight-price">₹3,150</div>
+          <div class="flight-price-sub">per person</div>
+          <span class="badge badge-blue">Meal Incl.</span>
+        </div>
+        <div class="flight-action">
+          <button class="btn-primary" style="font-size:13px;padding:10px 20px;" onclick="showToast('Redirecting to Air India booking...')">Book Now</button>
+        </div>
+      </div>
+      <!-- Flight 3 -->
+      <div class="flight-card">
+        <div class="airline-logo" style="background: linear-gradient(135deg,#E85D26,#F5A623)">✈</div>
+        <div class="flight-route">
+          <div>
+            <div class="flight-city">MAA</div>
+            <div class="flight-time">13:20</div>
+          </div>
+          <div class="flight-line">
+            <div class="flight-dur">3h 45m · 1 Stop · BOM</div>
+            <div class="flight-line-bar"></div>
+            <div class="flight-dur">SpiceJet</div>
+          </div>
+          <div>
+            <div class="flight-city">GOI</div>
+            <div class="flight-time">17:05</div>
+          </div>
+        </div>
+        <div>
+          <div class="flight-price">₹1,899</div>
+          <div class="flight-price-sub">per person</div>
+          <span class="badge badge-orange">1 Stop</span>
+        </div>
+        <div class="flight-action">
+          <button class="btn-primary" style="font-size:13px;padding:10px 20px;" onclick="showToast('Redirecting to SpiceJet booking...')">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUS BOOKING -->
+<section id="bus" class="section-pad">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="tag"><i class="fas fa-bus"></i> Bus Booking</div>
+      <h2 class="section-title">Book Bus Tickets Fast</h2>
+      <p class="section-sub">Compare operators, choose your seat, and grab the best deals across India.</p>
+    </div>
+    <div style="background:white;border-radius:var(--radius);padding:28px;margin-bottom:28px;box-shadow:var(--shadow);border:1.5px solid rgba(26,107,245,0.08);" class="fade-up">
+      <div style="display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr;gap:16px;align-items:end;">
+        <div class="form-group"><label>From</label><input type="text" value="Chennai"></div>
+        <div class="form-group"><label>To</label><input type="text" value="Bengaluru"></div>
+        <div class="form-group"><label>Date</label><input type="date" value="2025-03-15"></div>
+        <div class="form-group"><label>Passengers</label><select><option>1</option><option selected>2</option><option>3</option></select></div>
+        <div class="form-group"><label>&nbsp;</label><button class="btn-primary" style="width:100%;justify-content:center;" onclick="showToast('Finding best buses...')"><i class="fas fa-search"></i> Search</button></div>
+      </div>
+    </div>
+    <div class="bus-cards fade-up">
+      <div class="bus-card">
+        <div class="bus-logo-wrap">🚌</div>
+        <div class="bus-info">
+          <h3>SRS Travels</h3>
+          <p>Volvo AC Sleeper · Chennai → Bengaluru</p>
+          <div class="bus-chips">
+            <span class="bus-chip">AC Sleeper</span>
+            <span class="bus-chip">WiFi</span>
+            <span class="bus-chip">Charging</span>
+            <span class="bus-chip">4.3★</span>
+          </div>
+          <p style="font-size:12px;color:var(--gray);margin-top:8px;"><i class="fas fa-map-marker-alt" style="color:var(--blue)"></i> Boards: Koyambedu, Tambaram, Pallavaram</p>
+        </div>
+        <div class="bus-timing">
+          <div class="dep">22:30</div>
+          <div class="arr">→ 04:45</div>
+          <div class="dur">6h 15m</div>
+        </div>
+        <div class="bus-price-wrap">
+          <div class="bus-price">₹649</div>
+          <div class="bus-price-sub">per seat</div>
+          <button class="btn-primary" style="margin-top:10px;font-size:13px;padding:10px 18px;" onclick="showSeatPicker()">Select Seat</button>
+        </div>
+      </div>
+      <div class="bus-card">
+        <div class="bus-logo-wrap">🚌</div>
+        <div class="bus-info">
+          <h3>KPN Travels</h3>
+          <p>Scania AC Semi-Sleeper · Chennai → Bengaluru</p>
+          <div class="bus-chips">
+            <span class="bus-chip">AC Semi-Sleeper</span>
+            <span class="bus-chip">Snacks</span>
+            <span class="bus-chip">4.1★</span>
+          </div>
+          <p style="font-size:12px;color:var(--gray);margin-top:8px;"><i class="fas fa-map-marker-alt" style="color:var(--blue)"></i> Boards: Koyambedu, Guindy, Chrompet</p>
+        </div>
+        <div class="bus-timing">
+          <div class="dep">21:00</div>
+          <div class="arr">→ 03:30</div>
+          <div class="dur">6h 30m</div>
+        </div>
+        <div class="bus-price-wrap">
+          <div class="bus-price">₹499</div>
+          <div class="bus-price-sub">per seat</div>
+          <button class="btn-primary" style="margin-top:10px;font-size:13px;padding:10px 18px;" onclick="showToast('Opening seat selector...')">Select Seat</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seat picker popup -->
+    <div id="seat-picker" style="display:none;background:white;border-radius:var(--radius);padding:28px;margin-top:24px;box-shadow:var(--shadow);border:1.5px solid rgba(26,107,245,0.1);">
+      <h3 style="font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:18px;"><i class="fas fa-chair" style="color:var(--blue)"></i> Select Your Seats – SRS Travels</h3>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div>
+          <p style="font-family:var(--font-head);font-size:13px;font-weight:600;color:var(--gray);margin-bottom:10px;">LOWER BERTH</p>
+          <div class="seat-grid" id="seat-grid-lower"></div>
+        </div>
+        <div>
+          <p style="font-family:var(--font-head);font-size:13px;font-weight:600;color:var(--gray);margin-bottom:10px;">UPPER BERTH</p>
+          <div class="seat-grid" id="seat-grid-upper"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:14px;margin-top:16px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);"><div class="seat available" style="width:22px;height:22px;font-size:0"></div>Available</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);"><div class="seat booked" style="width:22px;height:22px;font-size:0"></div>Booked</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);"><div class="seat selected" style="width:22px;height:22px;font-size:0"></div>Selected</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);"><div class="seat ladies" style="width:22px;height:22px;font-size:0"></div>Ladies</div>
+      </div>
+      <button class="btn-primary" style="margin-top:18px;" onclick="showToast('Seats booked! Proceeding to payment...')"><i class="fas fa-check"></i> Confirm & Pay</button>
+    </div>
+
+    <!-- Discount deals -->
+    <div style="background:linear-gradient(135deg,#E4F0FF,#EEF7FF);border-radius:var(--radius);padding:24px;margin-top:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;border:1.5px solid rgba(26,107,245,0.12);" class="fade-up">
+      <i class="fas fa-percent" style="font-size:36px;color:var(--blue)"></i>
+      <div>
+        <h4 style="font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--navy)">Bus Discount Deals This Week</h4>
+        <p style="font-size:14px;color:var(--gray);margin-top:4px;">Use <strong>VOYBUS25</strong> for 25% off · <strong>FIRSTRIDE</strong> for ₹100 off your first booking · <strong>STUDENT10</strong> for student discounts</p>
+      </div>
+      <button class="btn-primary" style="margin-left:auto;" onclick="showToast('Code copied: VOYBUS25')">Copy Code</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOTEL BOOKING -->
+<section id="hotels" class="section-pad">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="tag"><i class="fas fa-hotel"></i> Hotel Booking</div>
+      <h2 class="section-title">Find Perfect Hotels</h2>
+      <p class="section-sub">From budget stays to luxury resorts — compare real-time prices and book with zero hassle.</p>
+    </div>
+    <div class="hotel-filter fade-up">
+      <button class="filter-btn active" onclick="filterHotel(this)">All</button>
+      <button class="filter-btn" onclick="filterHotel(this)">Budget (Under ₹1500)</button>
+      <button class="filter-btn" onclick="filterHotel(this)">Mid-Range (₹1500–₹4000)</button>
+      <button class="filter-btn" onclick="filterHotel(this)">Luxury (₹4000+)</button>
+      <button class="filter-btn" onclick="filterHotel(this)">Beach View</button>
+      <button class="filter-btn" onclick="filterHotel(this)">Couple Friendly</button>
+      <button class="filter-btn" onclick="filterHotel(this)">Family Rooms</button>
+    </div>
+    <div class="hotel-grid fade-up">
+      <div class="hotel-card">
+        <div class="hotel-img-wrap">
+          <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Hotel">
+          <div class="hotel-badge">Budget Pick</div>
+          <div class="hotel-fav">❤️</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">The Palms Beach Resort</div>
+          <div class="hotel-loc"><i class="fas fa-map-marker-alt" style="color:var(--blue)"></i>Calangute, Goa</div>
+          <div class="hotel-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+          <div class="compare-row"><span>OYO: <span class="other-price">₹2,800</span></span><span>MakeMyTrip: <span class="other-price">₹2,650</span></span><span class="save-badge">Save ₹450</span></div>
+          <div class="hotel-price-row">
+            <div><div class="hotel-price">₹2,199 <span>/night</span></div><div class="hotel-reviews"><strong>4.2</strong> · 284 reviews</div></div>
+            <button class="btn-primary" style="font-size:13px;padding:10px 18px;" onclick="showToast('Opening hotel booking...')">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="hotel-card">
+        <div class="hotel-img-wrap">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Hotel">
+          <div class="hotel-badge">Top Rated</div>
+          <div class="hotel-fav">🤍</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">Taj Holiday Village Resort</div>
+          <div class="hotel-loc"><i class="fas fa-map-marker-alt" style="color:var(--blue)"></i>Sinquerim, Goa</div>
+          <div class="hotel-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="compare-row"><span>Booking.com: <span class="other-price">₹9,800</span></span><span class="save-badge">Save ₹1,200</span></div>
+          <div class="hotel-price-row">
+            <div><div class="hotel-price">₹8,600 <span>/night</span></div><div class="hotel-reviews"><strong>4.8</strong> · 1,240 reviews</div></div>
+            <button class="btn-primary" style="font-size:13px;padding:10px 18px;" onclick="showToast('Redirecting to Taj booking...')">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="hotel-card">
+        <div class="hotel-img-wrap">
+          <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80" alt="Hotel">
+          <div class="hotel-badge">🔥 Hot Deal</div>
+          <div class="hotel-fav">🤍</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">Zostel Goa (Palolem)</div>
+          <div class="hotel-loc"><i class="fas fa-map-marker-alt" style="color:var(--blue)"></i>Palolem Beach, Goa</div>
+          <div class="hotel-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+          <div class="compare-row"><span>Hostelworld: <span class="other-price">₹899</span></span><span class="save-badge">Save ₹150</span></div>
+          <div class="hotel-price-row">
+            <div><div class="hotel-price">₹749 <span>/bed</span></div><div class="hotel-reviews"><strong>4.5</strong> · 680 reviews</div></div>
+            <button class="btn-primary" style="font-size:13px;padding:10px 18px;" onclick="showToast('Opening Zostel booking...')">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPENSE TRACKER -->
+<section id="expense" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-wallet"></i> Expense Tracker</div>
+      <h2 class="section-title">Track Every Rupee</h2>
+      <p class="section-sub">Upload bills, monitor spending by category, and get AI insights to never overspend on your trip.</p>
+    </div>
+    <div class="expense-wrap fade-up">
+      <div class="expense-left">
+        <div class="expense-card">
+          <h4 style="font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--navy);">Budget Overview</h4>
+          <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:14px;color:var(--gray);">
+            <span>Total Budget</span><span style="font-weight:700;color:var(--navy)">₹25,000</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:14px;color:var(--gray);">
+            <span>Spent</span><span style="font-weight:700;color:var(--accent)">₹17,340</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:14px;color:var(--gray);">
+            <span>Remaining</span><span style="font-weight:700;color:var(--accent2)">₹7,660</span>
+          </div>
+          <div class="budget-circle-wrap">
+            <div class="budget-donut">
+              <svg viewBox="0 0 160 160" width="160" height="160">
+                <circle class="donut-bg" cx="80" cy="80" r="70"/>
+                <circle class="donut-fill" id="donut-fill" cx="80" cy="80" r="70" stroke-dasharray="0 440"/>
+              </svg>
+              <div class="budget-center"><div class="pct" id="donut-pct">69%</div><div class="lbl">Used</div></div>
+            </div>
+          </div>
+          <div class="category-list">
+            <div class="cat-item"><div class="cat-dot" style="background:#1A6BF5"></div><div class="cat-name" style="font-size:13px">Transport</div><div class="cat-bar-wrap"><div class="cat-bar" style="width:70%;background:#1A6BF5"></div></div><div class="cat-amount">₹5,200</div></div>
+            <div class="cat-item"><div class="cat-dot" style="background:#FF6B35"></div><div class="cat-name" style="font-size:13px">Food</div><div class="cat-bar-wrap"><div class="cat-bar" style="width:45%;background:#FF6B35"></div></div><div class="cat-amount">₹3,800</div></div>
+            <div class="cat-item"><div class="cat-dot" style="background:#22D3A5"></div><div class="cat-name" style="font-size:13px">Hotels</div><div class="cat-bar-wrap"><div class="cat-bar" style="width:85%;background:#22D3A5"></div></div><div class="cat-amount">₹6,600</div></div>
+            <div class="cat-item"><div class="cat-dot" style="background:#A855F7"></div><div class="cat-name" style="font-size:13px">Activities</div><div class="cat-bar-wrap"><div class="cat-bar" style="width:30%;background:#A855F7"></div></div><div class="cat-amount">₹1,740</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="expense-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <h4 style="font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--navy)">Recent Expenses</h4>
+            <button class="btn-primary" style="font-size:12px;padding:7px 14px;" onclick="showToast('Bill uploaded successfully!')"><i class="fas fa-plus"></i> Add</button>
+          </div>
+          <div class="recent-expenses">
+            <div class="exp-item"><div class="exp-icon" style="background:#E0F2FE">🍽️</div><div class="exp-name"><h5>Fisherman's Wharf</h5><p>Lunch · Yesterday 1:30 PM</p></div><div class="exp-amount red">−₹1,340</div></div>
+            <div class="exp-item"><div class="exp-icon" style="background:#FEF3C7">🏨</div><div class="exp-name"><h5>Hotel Checkout</h5><p>2 nights · Today 11 AM</p></div><div class="exp-amount red">−₹4,400</div></div>
+            <div class="exp-item"><div class="exp-icon" style="background:#DCFCE7">🎟️</div><div class="exp-name"><h5>Dudhsagar Entry Refund</h5><p>Cancellation refund</p></div><div class="exp-amount green">+₹600</div></div>
+            <div class="exp-item"><div class="exp-icon" style="background:#F3E8FF">🛵</div><div class="exp-name"><h5>Scooter Rental</h5><p>Full day · Today 9 AM</p></div><div class="exp-amount red">−₹450</div></div>
+          </div>
+          <div class="upload-zone" onclick="showToast('Upload dialog opened!')">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Upload bills, receipts, and invoices</p>
+            <span>Click to browse or drag & drop • Unlimited uploads</span>
+          </div>
+        </div>
+        <div class="ai-analysis fade-up">
+          <h4><i class="fas fa-robot"></i> AI Spending Analysis</h4>
+          <div class="analysis-item"><i class="fas fa-check-circle"></i>You're spending 18% less than the average Goa traveler — great job!</div>
+          <div class="analysis-item"><i class="fas fa-lightbulb"></i>Food spending is on track. Consider local shacks over restaurants to save ₹300/day.</div>
+          <div class="analysis-item"><i class="fas fa-exclamation-triangle" style="color:#F59E0B"></i>Transport costs are higher than planned. Renting a scooter (₹350/day) vs cab could save ₹800.</div>
+          <div class="analysis-item"><i class="fas fa-piggy-bank"></i>At this rate, you'll have ₹4,200 remaining — consider one more activity!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY / TRAVEL JOURNAL -->
+<section id="gallery" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-camera"></i> Travel Journal</div>
+      <h2 class="section-title">Capture Your Memories</h2>
+      <p class="section-sub">Upload unlimited photos, write your travel diary and build a beautiful visual timeline of every adventure.</p>
+    </div>
+    <div style="text-align:right;margin-bottom:16px">
+      <button class="btn-primary" onclick="showToast('Upload photos from your device!')"><i class="fas fa-cloud-upload-alt"></i> Upload Photos</button>
+    </div>
+    <div class="gallery-grid fade-up">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Goa Beach">
+        <div class="gallery-overlay"><p>🌅 Sunset at Calangute</p></div>
+      </div>
+      <div class="gallery-item" style="height:200px">
+        <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=600&q=80" alt="Food">
+        <div class="gallery-overlay"><p>🍛 Goan Fish Curry</p></div>
+      </div>
+      <div class="gallery-item" style="height:200px">
+        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80" alt="Travel">
+        <div class="gallery-overlay"><p>🗺️ Planning The Route</p></div>
+      </div>
+      <div class="gallery-item" style="height:200px">
+        <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&q=80" alt="Waterfall">
+        <div class="gallery-overlay"><p>💧 Dudhsagar Falls</p></div>
+      </div>
+      <div class="gallery-item" style="height:200px">
+        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Adventure">
+        <div class="gallery-overlay"><p>🧗 Adventure Time!</p></div>
+      </div>
+    </div>
+    <div class="journal-entries fade-up" style="margin-top:40px">
+      <h3 style="font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--navy);margin-bottom:20px;">📖 Trip Diary</h3>
+      <div class="journal-entry">
+        <div class="journal-date"><div class="d">15</div><div class="m">Mar</div></div>
+        <div class="journal-content">
+          <h4>Day 1 – Finally Goa! 🌊</h4>
+          <p>Landed at Dabolim at 9 AM. The air here is just different — salty, breezy, absolutely free. Checked into The Palms, grabbed bikes and headed straight to Calangute. Watched the most stunning sunset of my life. Dinner at Thalassa was 10/10.</p>
+          <div class="journal-tags"><span class="journal-tag">🏖️ Beach</span><span class="journal-tag">🌅 Sunset</span><span class="journal-tag">🍽️ Dinner</span></div>
+        </div>
+      </div>
+      <div class="journal-entry">
+        <div class="journal-date"><div class="d">16</div><div class="m">Mar</div></div>
+        <div class="journal-content">
+          <h4>Day 2 – Watersports & Dudhsagar! 💦</h4>
+          <p>Parasailing at Baga was terrifying but exhilarating. The Dudhsagar jeep safari was the highlight — those falls are absolutely majestic. Did NOT expect the water to be so cold!</p>
+          <div class="journal-tags"><span class="journal-tag">🏄 Watersports</span><span class="journal-tag">💧 Waterfall</span><span class="journal-tag">🚙 Jeep Safari</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SMART ROUTE OPTIMIZATION -->
+<section id="route" class="section-pad">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="tag"><i class="fas fa-route"></i> Smart Route</div>
+      <h2 class="section-title">AI-Optimized Travel Routes</h2>
+      <p class="section-sub">Voyora groups nearby attractions to minimize travel time and save on transport costs.</p>
+    </div>
+    <div class="route-wrap fade-up">
+      <div class="map-mock">
+        <div class="map-bg">
+          <svg class="map-roads" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 350 Q150 200 250 150 Q350 100 460 80" stroke="#C0D8F0" stroke-width="3" fill="none" stroke-dasharray="8,4"/>
+            <path d="M80 380 Q200 300 320 250 Q420 200 480 160" stroke="#A8CCEC" stroke-width="2.5" fill="none"/>
+            <path d="M100 200 Q180 180 260 200 Q340 220 440 190" stroke="#B8D4E8" stroke-width="2" fill="none"/>
+            <path d="M250 150 L250 380" stroke="#C8DFF0" stroke-width="2" fill="none"/>
+            <!-- Optimized path highlight -->
+            <path d="M90 340 Q180 220 270 180 Q360 140 440 110" stroke="#1A6BF5" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <!-- Dots connecting path -->
+            <circle cx="90" cy="340" r="6" fill="#1A6BF5" opacity="0.8"/>
+            <circle cx="200" cy="240" r="5" fill="#22D3A5" opacity="0.8"/>
+            <circle cx="310" cy="175" r="5" fill="#FF6B35" opacity="0.8"/>
+            <circle cx="440" cy="110" r="6" fill="#1A6BF5" opacity="0.8"/>
+          </svg>
+          <div class="map-pin" style="top:80%;left:18%">
+            <div class="map-pin-dot"><i class="fas fa-play"></i></div>
+            <div class="map-pin-label">Start: Hotel</div>
+          </div>
+          <div class="map-pin" style="top:57%;left:40%">
+            <div class="map-pin-dot green"><i class="fas fa-camera"></i></div>
+            <div class="map-pin-label">Fort Aguada</div>
+          </div>
+          <div class="map-pin" style="top:42%;left:62%">
+            <div class="map-pin-dot red"><i class="fas fa-utensils"></i></div>
+            <div class="map-pin-label">Thalassa</div>
+          </div>
+          <div class="map-pin" style="top:26%;left:87%">
+            <div class="map-pin-dot"><i class="fas fa-flag"></i></div>
+            <div class="map-pin-label">Calangute Beach</div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);padding:12px 16px;display:flex;align-items:center;gap:14px;border-top:1px solid rgba(26,107,245,0.1);">
+          <i class="fas fa-route" style="color:var(--blue)"></i>
+          <span style="font-family:var(--font-head);font-size:13px;font-weight:600;color:var(--dark)">Optimized Route: 4 stops · 18.2 km · ~45 min · Saves ₹320 vs unoptimized</span>
+        </div>
+      </div>
+      <div>
+        <div class="route-stops">
+          <div class="route-stop">
+            <div class="stop-num">1</div>
+            <div class="stop-info">
+              <h4>Hotel Check-out</h4>
+              <p>The Palms Beach Resort, Calangute</p>
+              <div class="stop-meta"><span><i class="fas fa-clock"></i> 9:00 AM</span></div>
+            </div>
+          </div>
+          <div class="connector-line"></div>
+          <div class="route-stop">
+            <div class="stop-num green">2</div>
+            <div class="stop-info">
+              <h4>Fort Aguada</h4>
+              <p>Portuguese fort · Panoramic sea views</p>
+              <div class="stop-meta"><span><i class="fas fa-clock"></i> 9:20 AM</span><span><i class="fas fa-rupee-sign"></i> ₹25 entry</span><span><i class="fas fa-road"></i> 4.2 km</span></div>
+            </div>
+          </div>
+          <div class="connector-line"></div>
+          <div class="route-stop">
+            <div class="stop-num accent">3</div>
+            <div class="stop-info">
+              <h4>Thalassa Restaurant</h4>
+              <p>Cliff-top dining with sea view</p>
+              <div class="stop-meta"><span><i class="fas fa-clock"></i> 12:30 PM</span><span><i class="fas fa-road"></i> 7.8 km</span></div>
+            </div>
+          </div>
+          <div class="connector-line"></div>
+          <div class="route-stop">
+            <div class="stop-num">4</div>
+            <div class="stop-info">
+              <h4>Calangute Beach</h4>
+              <p>Sunset point · Beach shacks</p>
+              <div class="stop-meta"><span><i class="fas fa-clock"></i> 4:30 PM</span><span><i class="fas fa-road"></i> 6.2 km</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="savings-banner">
+          <i class="fas fa-leaf"></i>
+          <div>
+            <h4>🎯 AI saved you ₹320 & 1.4 hrs</h4>
+            <p>By optimizing stop order and combining nearby spots into one trip instead of four separate rides.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALS & OFFERS -->
+<section id="deals" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-fire"></i> Deals & Offers</div>
+      <h2 class="section-title">Limited-Time Travel Deals</h2>
+      <p class="section-sub">Flash sales, early-bird discounts and exclusive VOYORA partner offers.</p>
+    </div>
+    <div class="deals-grid fade-up">
+      <div class="deal-card">
+        <div class="deal-ribbon">FLASH SALE</div>
+        <div class="deal-img"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80" alt="Flight"></div>
+        <div class="deal-body">
+          <div class="deal-type">✈️ Flight Deal</div>
+          <h4>Delhi → Mumbai Return</h4>
+          <div class="deal-price">
+            <div class="now">₹3,599</div><div class="was">₹6,200</div><div class="deal-save">42% OFF</div>
+          </div>
+          <div class="deal-timer">
+            <i class="fas fa-clock"></i>
+            <div class="countdown">
+              <div class="ct-box" id="ct-h">02</div>:
+              <div class="ct-box" id="ct-m">47</div>:
+              <div class="ct-box" id="ct-s">33</div>
+            </div>
+            <span>left</span>
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:10px;font-size:13px;padding:10px;" onclick="showToast('Deal claimed! Check your email.')">Grab Deal</button>
+        </div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-img"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Hotel"></div>
+        <div class="deal-body">
+          <div class="deal-type">🏨 Hotel Deal</div>
+          <h4>2N Goa Beach Resort</h4>
+          <div class="deal-price">
+            <div class="now">₹3,499</div><div class="was">₹5,800</div><div class="deal-save">40% OFF</div>
+          </div>
+          <div class="deal-timer"><i class="fas fa-clock"></i><span>Ends Tonight</span></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:10px;font-size:13px;padding:10px;" onclick="showToast('Hotel deal secured!')">Grab Deal</button>
+        </div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-img"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80" alt="Bus"></div>
+        <div class="deal-body">
+          <div class="deal-type">🚌 Bus Deal</div>
+          <h4>Pune → Mumbai AC Bus</h4>
+          <div class="deal-price">
+            <div class="now">₹199</div><div class="was">₹350</div><div class="deal-save">43% OFF</div>
+          </div>
+          <div class="deal-timer"><i class="fas fa-clock"></i><span>Valid Today Only</span></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:10px;font-size:13px;padding:10px;" onclick="showToast('Bus ticket booked!')">Book Now</button>
+        </div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-img"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" alt="Package"></div>
+        <div class="deal-body">
+          <div class="deal-type">🎒 Holiday Package</div>
+          <h4>3N Paris — Student Special</h4>
+          <div class="deal-price">
+            <div class="now">₹42,999</div><div class="was">₹58,000</div><div class="deal-save">26% OFF</div>
+          </div>
+          <div class="deal-timer"><i class="fas fa-clock"></i><span>48 Hrs Left</span></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:10px;font-size:13px;padding:10px;" onclick="showToast('Package booking started!')">Explore</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-star"></i> Reviews</div>
+      <h2 class="section-title">Loved by Indian Travelers</h2>
+    </div>
+    <div style="max-width:300px;margin:0 auto 36px;" class="rating-summary fade-up">
+      <div class="rating-num">4.8</div>
+      <div class="rating-label">Based on 24,800+ reviews</div>
+      <div style="display:flex;justify-content:center;gap:4px;margin:10px 0 16px">
+        <i class="fas fa-star" style="color:#F59E0B"></i><i class="fas fa-star" style="color:#F59E0B"></i>
+        <i class="fas fa-star" style="color:#F59E0B"></i><i class="fas fa-star" style="color:#F59E0B"></i>
+        <i class="fas fa-star-half-alt" style="color:#F59E0B"></i>
+      </div>
+      <div class="rating-bars">
+        <div class="rb-row"><div class="rb-lbl">5★</div><div class="rb-bar"><div class="rb-fill" style="width:82%"></div></div><div class="rb-count">82%</div></div>
+        <div class="rb-row"><div class="rb-lbl">4★</div><div class="rb-bar"><div class="rb-fill" style="width:12%"></div></div><div class="rb-count">12%</div></div>
+        <div class="rb-row"><div class="rb-lbl">3★</div><div class="rb-bar"><div class="rb-fill" style="width:4%"></div></div><div class="rb-count">4%</div></div>
+        <div class="rb-row"><div class="rb-lbl">2★</div><div class="rb-bar"><div class="rb-fill" style="width:1%"></div></div><div class="rb-count">1%</div></div>
+        <div class="rb-row"><div class="rb-lbl">1★</div><div class="rb-bar"><div class="rb-fill" style="width:1%"></div></div><div class="rb-count">1%</div></div>
+      </div>
+    </div>
+    <div class="reviews-grid fade-up">
+      <div class="review-card">
+        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="review-text">The AI itinerary for our Manali trip was spot on! It saved us so much time and the budget breakdown was incredibly accurate. Best travel app for Indians!</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar">A</div>
+          <div><div class="reviewer-name">Aarav Sharma</div><div class="reviewer-city">📍 Delhi · Family trip</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="review-text">As a solo female traveler, I was skeptical. But VOYORA gave me a complete 5-day Kerala itinerary with safe areas, hostel recommendations and local tips. Absolutely love it!</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#FDF4FF;color:#9333EA">P</div>
+          <div><div class="reviewer-name">Priya Nair</div><div class="reviewer-city">📍 Chennai · Solo trip</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+        <div class="review-text">Used it for our college group trip to Goa. The expense tracker was a lifesaver — no more fights about who paid what! Highly recommend for student travelers.</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#FFF7ED;color:#D97706">R</div>
+          <div><div class="reviewer-name">Rohan Mehta</div><div class="reviewer-city">📍 Mumbai · College group</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="review-text">The flight + bus combo recommendation saved us ₹4,800 on our Rajasthan trip. The AI figured out it was cheaper to fly to Jaipur and bus to Jodhpur. Genius!</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#F0FDF4;color:#16A34A">S</div>
+          <div><div class="reviewer-name">Sunita Gupta</div><div class="reviewer-city">📍 Bengaluru · Couple trip</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="review-text">I'm not a tech person but this app was so easy to use! My daughter helped set it up and within 2 minutes we had a full Varanasi itinerary with hotels and everything.</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#EFF6FF;color:#2563EB">K</div>
+          <div><div class="reviewer-name">Kamala Devi</div><div class="reviewer-city">📍 Hyderabad · Family trip</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="review-text">The budget optimizer is pure magic. Had ₹12,000 for Kodaikanal and VOYORA gave us a 4-day plan that actually cost ₹11,200. Under budget and over fun!</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:#FEF2F2;color:#DC2626">V</div>
+          <div><div class="reviewer-name">Vikram Pillai</div><div class="reviewer-city">📍 Coimbatore · Budget trip</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIPTION -->
+<section id="subscription" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-crown"></i> Pricing</div>
+      <h2 class="section-title">Simple, Honest Pricing</h2>
+      <p class="section-sub">Start free forever. Upgrade to Premium for the full AI experience.</p>
+    </div>
+    <div class="plan-cards fade-up">
+      <div class="plan-card free">
+        <div class="plan-name">Free Plan</div>
+        <div class="plan-price">₹0 <span class="plan-period">/month</span></div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="plan-feat"><i class="fas fa-check"></i>Basic AI Itinerary (3/month)</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Flight & Bus Search</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Hotel Discovery</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Budget Calculator</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>10 Photo Uploads</div>
+          <div class="plan-feat disabled"><i class="fas fa-times"></i>Offline Access</div>
+          <div class="plan-feat disabled"><i class="fas fa-times"></i>Advanced AI Planning</div>
+          <div class="plan-feat disabled"><i class="fas fa-times"></i>Ad-free Experience</div>
+          <div class="plan-feat disabled"><i class="fas fa-times"></i>Priority Support</div>
+        </div>
+        <div class="plan-btn-wrap"><button class="btn-outline" style="width:100%;justify-content:center;" onclick="showToast('You're on Free plan!')">Current Plan</button></div>
+      </div>
+      <div class="plan-card premium">
+        <div class="plan-popular">POPULAR</div>
+        <div class="plan-name">Premium Plan</div>
+        <div class="plan-price" style="color:white">₹99 <span class="plan-period">/month</span></div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px;">Save 40% with annual plan (₹699/yr)</div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="plan-feat"><i class="fas fa-check"></i>Unlimited AI Itineraries</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Advanced AI Planning</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Offline Access</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>100% Ad-free</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Unlimited Photos</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Personalized Recommendations</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>AI Expense Analysis</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Priority Customer Support</div>
+          <div class="plan-feat"><i class="fas fa-check"></i>Exclusive Deals & Cashback</div>
+        </div>
+        <div class="plan-btn-wrap"><button class="btn-hero-primary" style="width:100%;justify-content:center;" onclick="showToast('Starting Premium trial — 7 days free!')"><i class="fas fa-crown"></i> Start 7-Day Free Trial</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE MODEL -->
+<section id="revenue" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-chart-pie"></i> Revenue Model</div>
+      <h2 class="section-title">How VOYORA Makes Money</h2>
+      <p class="section-sub">Transparent revenue streams that keep the platform free and fair for travelers.</p>
+    </div>
+    <div class="revenue-cards fade-up">
+      <div class="rev-card">
+        <div class="rev-icon">✈️</div>
+        <h4>Flight Booking Commission</h4>
+        <p>Earn 3-6% per flight booking through airline partnerships</p>
+        <div class="rev-pct">3–6%</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon">🏨</div>
+        <h4>Hotel Booking Commission</h4>
+        <p>15-20% commission from partner hotels and OYO network</p>
+        <div class="rev-pct">15–20%</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon">🚌</div>
+        <h4>Bus Booking Commission</h4>
+        <p>Fixed fee per bus ticket sold via redBus & KSRTC integration</p>
+        <div class="rev-pct">₹20–50/ticket</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon">🚗</div>
+        <h4>Cab Booking Commission</h4>
+        <p>10% commission on Ola/Uber bookings made through Voyora</p>
+        <div class="rev-pct">10%</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon">👑</div>
+        <h4>Premium Subscriptions</h4>
+        <p>₹99/month or ₹699/year per premium subscriber</p>
+        <div class="rev-pct">₹99–699</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP COMPARISON -->
+<section id="comparison" class="section-pad">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="tag"><i class="fas fa-trophy"></i> Why Voyora?</div>
+      <h2 class="section-title">How We Compare</h2>
+      <p class="section-sub">VOYORA vs the competition — see why Indian travelers are switching.</p>
+    </div>
+    <div class="comp-table-wrap fade-up">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="voyora-col">VOYORA <span class="voyora-badge-table">YOU ARE HERE</span></th>
+            <th>Wanderlog</th>
+            <th>MakeMyTrip</th>
+            <th>redBus</th>
+            <th>Layla AI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>AI Itinerary Generation</td><td class="voyora-col"><i class="fas fa-check check-yes"></i> Advanced</td><td><i class="fas fa-check check-yes"></i> Basic</td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-check check-yes"></i> Advanced</td></tr>
+          <tr><td>India Budget Optimization</td><td class="voyora-col"><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-times check-no"></i></td><td><span class="check-partial">Partial</span></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td></tr>
+          <tr><td>Bus Booking (India)</td><td class="voyora-col"><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-times check-no"></i></td></tr>
+          <tr><td>Expense Tracker</td><td class="voyora-col"><i class="fas fa-check check-yes"></i> AI-Powered</td><td><i class="fas fa-check check-yes"></i> Basic</td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td></tr>
+          <tr><td>Route Optimization</td><td class="voyora-col"><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td><td><span class="check-partial">Partial</span></td></tr>
+          <tr><td>Cab Integration</td><td class="voyora-col"><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td></tr>
+          <tr><td>Travel Journal / Gallery</td><td class="voyora-col"><i class="fas fa-check check-yes"></i> Unlimited</td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-times check-no"></i></td></tr>
+          <tr><td>Free Plan Available</td><td class="voyora-col"><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td><td><span class="check-partial">Limited</span></td></tr>
+          <tr><td>Hindi / Regional Support</td><td class="voyora-col"><i class="fas fa-check check-yes"></i> Coming Soon</td><td><i class="fas fa-times check-no"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-check check-yes"></i></td><td><i class="fas fa-times check-no"></i></td></tr>
+          <tr><td>Premium Price/month</td><td class="voyora-col" style="color:var(--blue);font-weight:700">₹99</td><td>$4.99</td><td>No AI Plan</td><td>No AI Plan</td><td>$9.99</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="color:white;margin-bottom:14px">
+          <div class="logo-icon"><i class="fas fa-compass"></i></div>
+          VOY<span style="color:var(--blue-light)">ORA</span>
+        </div>
+        <p>India's smartest AI travel planner. Built for students, families and budget travelers across every corner of Bharat.</p>
+        <div class="footer-social">
+          <div class="social-icon"><i class="fab fa-instagram"></i></div>
+          <div class="social-icon"><i class="fab fa-twitter"></i></div>
+          <div class="social-icon"><i class="fab fa-youtube"></i></div>
+          <div class="social-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="social-icon"><i class="fab fa-linkedin"></i></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#" onclick="scrollToSection('ai-planner')">AI Trip Planner</a></li>
+          <li><a href="#" onclick="scrollToSection('flights')">Flight Booking</a></li>
+          <li><a href="#" onclick="scrollToSection('bus')">Bus Booking</a></li>
+          <li><a href="#" onclick="scrollToSection('hotels')">Hotel Booking</a></li>
+          <li><a href="#" onclick="scrollToSection('expense')">Expense Tracker</a></li>
+          <li><a href="#" onclick="scrollToSection('deals')">Deals & Offers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="showToast('About page coming soon!')">About Us</a></li>
+          <li><a href="#" onclick="showToast('Careers page — we\'re hiring!')">Careers</a></li>
+          <li><a href="#" onclick="showToast('Blog launching soon!')">Blog</a></li>
+          <li><a href="#" onclick="showToast('Press kit downloaded!')">Press Kit</a></li>
+          <li><a href="#" onclick="showToast('Partner form opened!')">Partner With Us</a></li>
+          <li><a href="#" onclick="showToast('Support: support@voyora.in')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:14px">Get the best travel deals & tips delivered weekly.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com">
+          <button onclick="showToast('Subscribed! Check your inbox.')"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div style="margin-top:20px">
+          <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:10px">Available on</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button onclick="showToast('iOS app coming soon!')" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;padding:8px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:var(--font-head);font-weight:600;display:flex;align-items:center;gap:6px"><i class="fab fa-apple"></i>App Store</button>
+            <button onclick="showToast('Android app coming soon!')" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;padding:8px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:var(--font-head);font-weight:600;display:flex;align-items:center;gap:6px"><i class="fab fa-google-play"></i>Play Store</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VOYORA Technologies Pvt. Ltd. Made with ❤️ in India</p>
+      <div class="footer-links">
+        <a href="#" onclick="showToast('Privacy Policy')">Privacy Policy</a>
+        <a href="#" onclick="showToast('Terms of Service')">Terms</a>
+        <a href="#" onclick="showToast('Refund Policy')">Refund Policy</a>
+        <a href="#" onclick="showToast('Cookie Settings')">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg">Done!</span></div>
+
+<script>
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll', () => {
+  const nb = document.getElementById('navbar');
+  nb.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// ===== SMOOTH SCROLL =====
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ===== HAMBURGER =====
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ===== BUDGET RANGE =====
+function updateBudget() {
+  const min = parseInt(document.getElementById('budget-min').value);
+  const max = parseInt(document.getElementById('budget-max').value);
+  document.getElementById('range-label').textContent = '₹' + min.toLocaleString('en-IN');
+  document.getElementById('range-label2').textContent = '₹' + max.toLocaleString('en-IN');
+}
+
+// ===== PREF CHIPS =====
+function toggleChip(el) { el.classList.toggle('active'); }
+
+// ===== AI ITINERARY GENERATOR =====
+function generateItinerary() {
+  const btn = document.getElementById('gen-btn');
+  const dest = document.getElementById('dest-input').value || 'Goa';
+  btn.innerHTML = '<span class="spinner"></span> Generating...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fas fa-magic"></i> Generate AI Itinerary';
+    btn.disabled = false;
+    const result = document.getElementById('ai-result');
+    result.classList.add('show');
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    animateDonut();
+    showToast('AI itinerary generated for ' + dest + '!');
+  }, 2200);
+}
+
+// ===== HOTEL FILTER =====
+function filterHotel(btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  showToast('Filtering hotels: ' + btn.textContent);
+}
+
+// ===== SEAT PICKER =====
+function showSeatPicker() {
+  const sp = document.getElementById('seat-picker');
+  sp.style.display = sp.style.display === 'block' ? 'none' : 'block';
+  if (sp.style.display === 'block') {
+    renderSeats('seat-grid-lower', [2,5,8,11,14]);
+    renderSeats('seat-grid-upper', [1,3,7,10,13,15]);
+    sp.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+function renderSeats(gridId, bookedSeats) {
+  const grid = document.getElementById(gridId);
+  grid.innerHTML = '';
+  const ladiesSeats = [3,4];
+  for (let i = 1; i <= 16; i++) {
+    const seat = document.createElement('div');
+    seat.className = 'seat ' + (bookedSeats.includes(i) ? 'booked' : ladiesSeats.includes(i) ? 'ladies' : 'available');
+    seat.textContent = i;
+    if (!bookedSeats.includes(i)) {
+      seat.onclick = () => {
+        document.querySelectorAll(`#${gridId} .seat.selected`).forEach(s => s.classList.remove('selected'));
+        seat.classList.add('selected');
+        showToast('Seat ' + i + ' selected!');
+      };
+    }
+    grid.appendChild(seat);
+  }
+}
+
+// ===== DONUT ANIMATION =====
+function animateDonut() {
+  const fill = document.getElementById('donut-fill');
+  if (!fill) return;
+  const circumference = 2 * Math.PI * 70;
+  const pct = 0.69;
+  setTimeout(() => {
+    fill.style.strokeDasharray = (circumference * pct) + ' ' + circumference;
+  }, 300);
+}
+
+// ===== COUNTDOWN TIMER =====
+let ct = { h: 2, m: 47, s: 33 };
+setInterval(() => {
+  ct.s--;
+  if (ct.s < 0) { ct.s = 59; ct.m--; }
+  if (ct.m < 0) { ct.m = 59; ct.h = Math.max(0, ct.h - 1); }
+  const hs = document.getElementById('ct-h');
+  const ms = document.getElementById('ct-m');
+  const ss = document.getElementById('ct-s');
+  if (hs) hs.textContent = String(ct.h).padStart(2,'0');
+  if (ms) ms.textContent = String(ct.m).padStart(2,'0');
+  if (ss) ss.textContent = String(ct.s).padStart(2,'0');
+}, 1000);
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      if (entry.target.querySelector && entry.target.querySelector('#donut-fill')) {
+        animateDonut();
+      }
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
+
+// ===== DONUT ON EXPENSE SECTION SCROLL =====
+const expObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) animateDonut();
+}, { threshold: 0.3 });
+const expSection = document.getElementById('expense');
+if (expSection) expObserver.observe(expSection);
+
+// ===== ACTIVE NAV HIGHLIGHT =====
+const sections = ['hero','ai-planner','flights','bus','hotels','expense','gallery','route','deals','reviews','subscription'];
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.textContent.toLowerCase().includes(current));
+  });
+});
+</script>
+</body>
+</html>
